@@ -1,0 +1,68 @@
+<html lang="pt-BR">
+    <head>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            // Jquery
+            $(document).ready(function(){
+
+                window.addEventListener('message', function(event){
+                    var item = event.data;
+                    if (item.type == "click"){
+                        closePainel();
+                    }
+                    else if(item.openPainel == true) {
+                      openPainel();
+                    }
+                    else if(item.closePainel == true) {
+                      closePainel();
+                    }
+                });
+
+                $('#button-conf').on('click', function(){
+                    submitClose();
+                    closePainel();
+                });
+
+                function openPainel() {
+                    $("#container").css("display", "block");
+                }
+
+                function closePainel() {
+                    $("#container").css("display", "none");
+                }
+
+                function submitClose() {
+                    $.post('http://vrp_carapicuiba/close', JSON.stringify({}));
+                }
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="top">
+                <!--img src="bora.png"-->
+                <h2 id="server-h2">SERVER ROLEPLAY</h2>
+                <br>
+            </div>
+
+            <div id="mid">
+
+                <div class="small">
+                    <p id="welcome">Bem vindo ao <b id="server-p">SERVER ROLEPLAY</b></p>
+                    <p>Nosso Discord: <a id="discord-link" onclick="abrirLink()">discord.gg/linktest</a></p>
+                    <p>Guarde o IP #1: <b id="server-ip">127.0.0.1:00000</b></p>
+                    <p>Guarde o IP #2: <b id="server-ip">127.0.0.1:00000</b></p>
+                    <button id="button-conf">Fechar</button>
+                </div>
+            </div>
+            <!-- Corresponde á area de baixo do Layout contendo a informação de direitos autorais! -->
+            <div id="bottom">
+                <p id="bynoorth">Feito por: Noorth</p><p id="server-direitos">Server Roleplay © 2020</p>
+            </div>
+        </div>
+    </body>
+</html>
